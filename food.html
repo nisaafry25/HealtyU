@@ -1,0 +1,212 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Meditation Space</title>
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="css/queries.css">
+  <link href="https://fonts.googleapis.com/css2?family=Alegreya+SC:wght@400;500;700&display=swap" rel="stylesheet">
+  <!-- Include AOS CSS -->
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.css" rel="stylesheet">
+  <style>
+    .meditasi-heading {
+      font-family: 'Alegreya SC', serif;
+      color: #C4A15D;
+      text-align: center;
+      font-size: 3rem;
+      margin-top: 4rem; /* Menurunkan tulisan lebih jauh */
+    }
+
+    .header-bottom {
+      background-color: #ffffff; /* Warna putih bersih */
+      padding: 40px 0; /* Menambahkan padding agar lebih jauh dari atas */
+      margin-top: 80px; /* Menambahkan margin atas */
+    }
+
+    .meditasi-image {
+      display: block;
+      margin: 0 auto;
+      width: 260px; /* Sesuaikan dengan ukuran gambar */
+      height: 280px; /* Sesuaikan dengan ukuran gambar */
+    }
+
+    .experience-text {
+      font-family: 'Alegreya SC', serif;
+      color: #C4A15D;
+      text-align: center;
+      font-size: 35px;
+      margin-top: 40px; /* Menambahkan jarak yang sedikit lebih besar dari gambar */
+    }
+
+    .description-text {
+      font-family: 'alike angular', sans-serif; /* Mengatur font menjadi alike angular */
+      color: #747474; /* Mengatur warna teks menjadi #747474 */
+      font-size: 16px; /* Mengatur ukuran teks menjadi 16 */
+      text-align: center; /* Pusatkan teks */
+      margin-top: 20px; /* Menambahkan jarak dari teks sebelumnya */
+      line-height: 1.5; /* Menambahkan jarak antar baris */
+      padding: 20px 0;
+      margin-left: 160px;
+      margin-right: 160px;
+    }
+    
+    .about-image {
+      display: block;
+      width: 450px; /* Sesuaikan dengan ukuran gambar */
+      height: 324px; /* Sesuaikan dengan ukuran gambar */
+      border-right: 28px solid #C4A15D; /* Warna border bisa disesuaikan */
+      border-bottom: 28px solid #C4A15D; /* Warna border bisa disesuaikan */
+      margin-left: 870px;
+      margin-top: 60px;
+    }
+
+    .about2-image {
+      display: block;
+      width: 450px; /* Sesuaikan dengan ukuran gambar */
+      height: 324px; /* Sesuaikan dengan ukuran gambar */
+      border-right: 28px solid #C4A15D; /* Warna border bisa disesuaikan */
+      border-bottom: 28px solid #C4A15D; /* Warna border bisa disesuaikan */
+      margin-right: 850px;
+      margin-left: 300px;
+      margin-top: -325px;
+    }
+
+    .about-section {
+      width: 100vw;
+      height: 15vw;
+      background-color: #FFF8EA; /* Latar belakang untuk bagian mentor */
+      display: flex;
+      justify-content: center; /* Pusatkan konten secara horizontal */
+      box-sizing: border-box;
+      margin-left: calc(-50vw + 50%);
+      position: relative;
+      text-align: center; /* Tambahkan properti text-align */
+      margin-bottom: 0; /* Pastikan tidak ada margin bawah */
+      margin-top: 60px;
+    }
+    .description2-text {
+      font-family: 'alike angular', sans-serif; /* Mengatur font menjadi alike angular */
+      color: #747474; /* Mengatur warna teks menjadi #747474 */
+      font-size: 16px; /* Mengatur ukuran teks menjadi 16 */
+      text-align: center; /* Pusatkan teks */
+      margin-top: 180px; /* Menambahkan jarak dari teks sebelumnya */
+      line-height: 1.5; /* Menambahkan jarak antar baris */
+      padding: 20px 0;
+      margin-left: 160px;
+      margin-right: 160px;
+    }
+
+    .experience2-text {
+      font-family: 'Alegreya SC', serif;
+      color: #C4A15D;
+      text-align: center; /* Pusatkan teks */
+      font-size: 35px;
+      margin-top: 40px; /* Menambahkan jarak yang sedikit lebih besar dari gambar */
+    }
+    .image-container {
+  display: flex;
+  align-items: center;
+  overflow: hidden;
+}
+
+.left-image,
+.right-image,
+.right-image {
+  margin-left: 19px; /* Sesuaikan nilai margin-left */
+  margin-right: 5px; /* Sesuaikan nilai margin-right */
+}
+
+
+  </style>
+</head>
+<body>
+  <header class="main--header">
+    <a href="index.html"><img class="main--newlogo" src="img/newlogo.png" /></a>
+    <nav class="main--nav">
+      <ul class="main-nav-list">
+        <li><a class="main-nav-link" href="about.html">About</a></li>
+        <li><a class="main-nav-link" href="food.html">Article</a></li>
+        <li><a class="main-nav-link" href="calorie.html">Count Calorie</a></li>
+        <li id="user-info" style="display: none;">
+          <img id="user-pic" src="" alt="User picture" style="width: 30px; height: 30px; border-radius: 50%;">
+          <span id="user-name"></span> (<span id="user-email"></span>)
+        </li>
+        <li><button id="logout-btn" style="display: none; cursor: pointer;">Log Out</button></li>
+      </ul>
+    </nav>
+    <button class="btn-mobile-nav">
+      <ion-icon class="icon-mobile-nav" name="menu-outline"></ion-icon>
+      <ion-icon class="icon-mobile-nav" name="close-outline"></ion-icon>
+    </button>
+  </header>
+
+  <!-- Tambahkan div untuk header bawah -->
+  <div class="header-bottom" data-aos="fade-down">
+    <div class="meditasi-heading">F O O D</div>
+  </div>
+
+  <div class="image-container">
+    <img class="left-image" src="img/food1.png" alt="Left Image">
+    <img class="right-image" src="img/food2.png" alt="Right Image">
+    <img class="right-image" src="img/food3.png" alt="Right Image">
+    <img class="right-image" src="img/food4.png" alt="Right Image">
+    <img class="right-image" src="img/food5.png" alt="Right Image">
+  </div>
+
+
+  <div class="description-text" data-aos="fade-left">
+   In our journey to health and fitness, the food we consume plays an important role. Not only does it fuel our daily activities, but it also has the power to improve our mood, increase our mental clarity, and prevent a myriad of health problems. This guide is your gateway to understanding and embracing healthy eating habits that are sustainable and satisfying.
+  </div>
+
+<!-- Tambahkan tulisan Experience Serene Luxury and comfort at HealthyU -->
+<div class="experience-text" data-aos="fade-right">Why Choose Healty food?</div>
+
+<div class="description-text" data-aos="fade-left">
+  Healthy food is the cornerstone of a dynamic lifestyle. They are packed with essential nutrients, vitamins, and minerals that our bodies need to function optimally. By choosing healthy foods over processed options, you are investing in your long-term health and well-being.
+</div>
+<!-- Tambahkan tulisan Experience Serene Luxury and comfort at HealthyU -->
+<div class="experience-text" data-aos="fade-right">Best Tips to Choose Healty Foods</div>
+
+<div class="description-text" data-aos="fade-left">
+  Choosing healthy foods is an important step in maintaining our health and well-being. One of the main principles is to choose fresh, minimally processed foods, such as fruit, vegetables and whole grains. It is also important to pay attention to nutritional balance, by choosing foods that contain complex carbohydrates, protein, healthy fats, fiber, and sufficient vitamins and minerals. Also pay attention to food labels to check the nutritional content and additional ingredients used. Avoid foods high in added sugar and excess salt, and limit consumption of saturated and trans fats. Choose healthy sources of protein, such as lean meat, fish, nuts, and low-fat dairy products. It's also important to pay attention to portion sizes and avoid overeating. Drink lots of water to maintain body hydration. Variation in food consumption is also important, so that the body gets a variety of nutrients. Avoid fast food and eat mindfully, without doing other activities. Plan your healthy meals to help you stay committed to an overall healthy lifestyle. By following these tips, we can make healthier food choices to support our health and well-being.
+</div>    
+
+    <div class="experience-text" data-aos="fade-right">Adopt a Healthy Lifestyle </div>
+    
+    <div class="description-text" data-aos="fade-left">
+ 		Transitioning to a healthier diet doesn't have to be a difficult task. Start small by making one or two changes at a time, and gradually, these will become part of your daily routine. Remember, healthy eating is about balance and enjoying a variety of foods that are healthy for the body and soul.
+ 		          We hope this guide inspires you to make wise choices and explore the wonderful world of healthy food. Your body deserves the best fuel. It's time to start feeding him properly.    
+    </div>
+
+    <div class="about-section" data-aos="fade-down">
+        <div class="ber-container">
+          <div class="experience2-text"> Healty Is Important</div>
+          <div class="ber-container">
+            <div class="description-text"> Come on, starting today we commit to giving our bodies healthy and nutritious food!
+            </div>
+          </div>
+        </div>
+    </div>
+
+<footer class="footer-section">
+    <div class="footer-box container">
+    <div class="footer-social">
+        <a href="#" target="_blank" class="footer-social-link"><ion-icon class="footer-social-logo" name="logo-facebook"></ion-icon></a>
+        <a href="#" target="_blank" class="footer-social-link"><ion-icon class="footer-social-logo" name="logo-instagram"></ion-icon></a>
+        <a href="#" target="_blank" class="footer-social-link"><ion-icon class="footer-social-logo" name="logo-twitter"></ion-icon></a>
+    </div>
+    <p>© 2024 HealtyU Tourism</p>
+    </div>
+</footer>
+
+<!-- Include AOS JS -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.js"></script>
+<script>
+  AOS.init();
+</script>
+<script src="scripts.js"></script>
+<script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
+<script nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
+</body>
+</html>

@@ -1,0 +1,204 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Meditation Space</title>
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="css/queries.css">
+  <link href="https://fonts.googleapis.com/css2?family=Alegreya+SC:wght@400;500;700&display=swap" rel="stylesheet">
+  <!-- Include AOS CSS -->
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.css" rel="stylesheet">
+  <style>
+    .meditasi-heading {
+      font-family: 'Alegreya SC', serif;
+      color: #C4A15D;
+      text-align: center;
+      font-size: 3rem;
+      margin-top: 4rem; /* Menurunkan tulisan lebih jauh */
+    }
+
+    .header-bottom {
+      background-color: #ffffff; /* Warna putih bersih */
+      padding: 40px 0; /* Menambahkan padding agar lebih jauh dari atas */
+      margin-top: 80px; /* Menambahkan margin atas */
+    }
+
+    .meditasi-image {
+      display: block;
+      margin: 0 auto;
+      /* width: 1650px; Sesuaikan dengan ukuran gambar */
+      width: 100%;
+      height: 324px; /* Sesuaikan dengan ukuran gambar */
+    }
+
+    .experience-text {
+      font-family: 'Alegreya SC', serif;
+      color: #C4A15D;
+      text-align: center;
+      font-size: 35px;
+      margin-top: 40px; /* Menambahkan jarak yang sedikit lebih besar dari gambar */
+    }
+
+    .description-text {
+      font-family: 'alike angular', sans-serif; /* Mengatur font menjadi alike angular */
+      color: #747474; /* Mengatur warna teks menjadi #747474 */
+      font-size: 16px; /* Mengatur ukuran teks menjadi 16 */
+      text-align: center; /* Pusatkan teks */
+      margin-top: 20px; /* Menambahkan jarak dari teks sebelumnya */
+      line-height: 1.5; /* Menambahkan jarak antar baris */
+      padding: 20px 0;
+      margin-left: 160px;
+      margin-right: 160px;
+    }
+    
+    .about-image {
+      display: block;
+      width: 450px; /* Sesuaikan dengan ukuran gambar */
+      height: 324px; /* Sesuaikan dengan ukuran gambar */
+      border-right: 28px solid #C4A15D; /* Warna border bisa disesuaikan */
+      border-bottom: 28px solid #C4A15D; /* Warna border bisa disesuaikan */
+      margin-left: 870px;
+      margin-top: 60px;
+    }
+
+    .about2-image {
+      display: block;
+      width: 450px; /* Sesuaikan dengan ukuran gambar */
+      height: 324px; /* Sesuaikan dengan ukuran gambar */
+      border-right: 28px solid #C4A15D; /* Warna border bisa disesuaikan */
+      border-bottom: 28px solid #C4A15D; /* Warna border bisa disesuaikan */
+      margin-right: 850px;
+      margin-left: 300px;
+      margin-top: -325px;
+    }
+
+    .about-section {
+      width: 100vw;
+      height: 15vw;
+      background-color: #FFF8EA; /* Latar belakang untuk bagian mentor */
+      display: flex;
+      justify-content: center; /* Pusatkan konten secara horizontal */
+      box-sizing: border-box;
+      margin-left: calc(-50vw + 50%);
+      position: relative;
+      text-align: center; /* Tambahkan properti text-align */
+      margin-bottom: 0; /* Pastikan tidak ada margin bawah */
+      margin-top: 60px;
+    }
+    .description2-text {
+      font-family: 'alike angular', sans-serif; /* Mengatur font menjadi alike angular */
+      color: #747474; /* Mengatur warna teks menjadi #747474 */
+      font-size: 16px; /* Mengatur ukuran teks menjadi 16 */
+      text-align: center; /* Pusatkan teks */
+      margin-top: 180px; /* Menambahkan jarak dari teks sebelumnya */
+      line-height: 1.5; /* Menambahkan jarak antar baris */
+      padding: 20px 0;
+      margin-left: 160px;
+      margin-right: 160px;
+    }
+
+    .experience2-text {
+      font-family: 'Alegreya SC', serif;
+      color: #C4A15D;
+      text-align: center; /* Pusatkan teks */
+      font-size: 35px;
+      margin-top: 40px; /* Menambahkan jarak yang sedikit lebih besar dari gambar */
+    }
+  </style>
+</head>
+<body>
+  <header class="main--header">
+    <a href="index.html"><img class="main--newlogo" src="img/newlogo.png" /></a>
+    <nav class="main--nav">
+      <ul class="main-nav-list">
+        <li><a class="main-nav-link" href="about.html">About</a></li>
+        <li><a class="main-nav-link" href="food.html">Article</a></li>
+        <li><a class="main-nav-link" href="calorie.html">Count Calorie</a></li>
+        <li id="user-info" style="display: none;">
+          <img id="user-pic" src="" alt="User picture" style="width: 30px; height: 30px; border-radius: 50%;">
+          <span id="user-name"></span> (<span id="user-email"></span>)
+        </li>
+        <li><button id="logout-btn" style="display: none; cursor: pointer;">Log Out</button></li>
+      </ul>
+    </nav>
+    <button class="btn-mobile-nav">
+      <ion-icon class="icon-mobile-nav" name="menu-outline"></ion-icon>
+      <ion-icon class="icon-mobile-nav" name="close-outline"></ion-icon>
+    </button>
+  </header>
+
+  <!-- Tambahkan div untuk header bawah -->
+  <div class="header-bottom" data-aos="fade-down">
+    <div class="meditasi-heading">H E A L T Y U</div>
+  </div>
+
+  <!-- Tambahkan gambar meditasi -->
+  <img class="meditasi-image" src="img/about.png" alt="Meditasi"  height="324" data-aos="fade-up">
+
+  <!-- Tambahkan tulisan Experience Serene Luxury and comfort at HealthyU -->
+  <div class="experience-text" data-aos="fade-right">Welcome to HealthyU, your ultimate destination for all things health and wellness!</div>
+
+  <div class="description-text" data-aos="fade-left">
+    At HealthyU, we believe that everyone has the right to live a healthy and fulfilling life. Our mission is to provide you with the knowledge, tools and inspiration you need to achieve your health and fitness goals. Whether you're looking to improve your diet, find a new exercise routine, or manage stress, we've got you covered.
+</div>
+
+<!-- Tambahkan tulisan Experience Serene Luxury and comfort at HealthyU -->
+<div class="experience-text" data-aos="fade-right">Our Story</div>
+
+<div class="description-text" data-aos="fade-left">
+   HealthyU was founded by a group of health enthusiasts who wanted to create a reliable and comprehensive resource for people looking to improve their well-being. We've noticed that while there is a wealth of information available online, it can be overwhelming and often conflicting. That's why we decided to create HealthyU - a place where you can find trusted, evidence-based information, all in one place.
+</div>
+<!-- Tambahkan tulisan Experience Serene Luxury and comfort at HealthyU -->
+<div class="experience-text" data-aos="fade-right"> Why Choose HealthyU?</div>
+
+<div class="description-text" data-aos="fade-left">
+    Holistic Wellness Program: We offer a variety of activities designed to harmonize with Yogyakarta's natural beauty and cultural heritage, including meditation sessions, invigorating Zumba classes, and comprehensive cardio workouts.
+    </div>
+    
+    <div class="description-text" data-aos="fade-left">
+        Tranquil Environment: Nestled amidst the serene landscape of Yogyakarta, our facility provides the perfect atmosphere for relaxation and healing. The peaceful atmosphere and beautiful views enhance your wellness journey.
+    </div>
+    <div class="experience-text" data-aos="fade-right"> Our Service</div>
+    
+    <div class="description-text" data-aos="fade-left">
+        Meditation: Guided meditation sessions to help you find inner peace and mental clarity.<br>
+       	Zumba: An energetic and fun Zumba class that promotes fitness and fun.<br>
+       	Cardio Activities: A comprehensive cardio program designed to improve cardiovascular health and overall fitness.
+    </div>
+
+    <img class="about-image" src="img/about1.png" alt="about" width="520" height="324" data-aos="fade-up">
+    <img class="about2-image" src="img/about2.png" alt="about" width="520" height="324" data-aos="fade-up">
+
+    <div class="about-section" data-aos="fade-down">
+        <div class="ber-container">
+          <div class="experience2-text"> Our Commitment</div>
+          <div class="ber-container">
+            <div class="description-text">
+            	At HealthyU, your health and happiness are our top priority. We are committed to creating a supportive environment 				where you can rediscover balance and contentment. Let the spirit of Yogyakarta inspire you towards a more balanced a				nd fulfilled life.
+            </div>
+          </div>
+        </div>
+    </div>
+
+<footer class="footer-section">
+    <div class="footer-box container">
+    <div class="footer-social">
+        <a href="#" target="_blank" class="footer-social-link"><ion-icon class="footer-social-logo" name="logo-facebook"></ion-icon></a>
+        <a href="#" target="_blank" class="footer-social-link"><ion-icon class="footer-social-logo" name="logo-instagram"></ion-icon></a>
+        <a href="#" target="_blank" class="footer-social-link"><ion-icon class="footer-social-logo" name="logo-twitter"></ion-icon></a>
+    </div>
+    <p>© 2024 HealtyU Tourism</p>
+    </div>
+</footer>
+
+<!-- Include AOS JS -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.js"></script>
+<script>
+  AOS.init();
+</script>
+<script src="scripts.js"></script>
+<script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
+<script nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
+</body>
+</html>

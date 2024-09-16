@@ -1,0 +1,436 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <link rel="icon" href="Vricap-favicon.png" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Rubik:wght@400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+  	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-icons/1.10.5/font/bootstrap-icons.min.css">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>HealtyU</title>
+    <link href="css/style.css" rel="stylesheet" />
+    <link href="css/queries.css" rel="stylesheet" />
+    <script type="module" src="scripts.js" defer></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/uuid/8.3.2/uuid.min.js"></script>
+    <script type="module" src="https://www.gstatic.com/firebasejs/9.0.0/firebase-app.js"></script>
+    <script type="module" src="https://www.gstatic.com/firebasejs/9.0.0/firebase-auth.js"></script>
+    <script type="module" src="https://www.gstatic.com/firebasejs/10.12.1/firebase-app-compat.js"></script>
+    <script type="module" src="https://www.gstatic.com/firebasejs/10.12.1/firebase-firestore-compat.js"></script>
+
+  <!--   <style> -->
+		<!-- #translateBtn { -->
+		<!--       position: fixed; -->
+		<!--       bottom: 20px; -->
+		<!--       right: 20px; -->
+		<!--       background-color: #007bff; -->
+		<!--       color: white; -->
+		<!--       border: none; -->
+		<!--       border-radius: 50%; -->
+		<!--       padding: 15px; -->
+		<!--       box-shadow: 0 2px 5px rgba(0,0,0,0.3); -->
+		<!--       cursor: pointer; -->
+		<!--       z-index: 1000; -->
+		<!--     } -->
+  <!--   </style> -->
+
+  </head>
+  <body>
+    <header class="main--header">
+      <a href="#"><img class="main--newlogo" src="img/newlogo.png" /></a>
+
+      <nav class="main--nav">
+        <ul class="main-nav-list">
+          <li><a class="main-nav-link" href="about.html">About</a></li>
+          <li><a class="main-nav-link" href="food.html">Article</a></li>
+          <li><a class="main-nav-link" href="calorie.html">Count Calorie</a></li>
+          <li id="user-info" style="display: none;">
+     		 <img id="user-pic" src="" alt="User picture" style="width: 30px; height: 30px; border-radius: 50%;">
+    	   	<span id="user-name"></span> (<span id="user-email"></span>)
+    	  </li>
+          <li><button id="google-login-btn" style="cursor: pointer;">Log In</button></li>
+          <li><button id="logout-btn" style="display: none; cursor: pointer;">Log Out</button></li>
+        </ul>
+      </nav>
+
+      <button class="btn-mobile-nav">
+        <ion-icon class="icon-mobile-nav" name="menu-outline"></ion-icon>
+        <ion-icon class="icon-mobile-nav" name="close-outline"></ion-icon>
+      </button>
+    </header>
+
+    <main>
+      <section class="hero-section">
+        <div class="hero-box container">
+          <div class="hero-text">
+            <h1 class="hero-header">
+              HealtyU Tourism
+            </h1>
+            <p>Plans for your wellness being.</p>
+            <div class="hero-short-link">
+              <a href="#hobby">Joins US!</a>
+            </div>
+          </div>
+          <div class="hero-img">
+            <img class="hero-vricap-img" src="data:image/png;base64,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">
+          </div>
+        </div>
+      </section>      
+
+      <h1 class="plans-explanation">What You Need To Know!</h1>
+      <section id="about" class="about-section">
+        <div class="about-box container">
+          <div class="about-img">
+            <img class="about-vricap-img" src="img/meditation-plans.jpg" />
+          </div>
+          <div class="about-text">
+            <h2>Meditation</h2>
+            <h2 style="font-size: 2rem;"><em>(Relaxation)</em></h2>
+            <p>Our meditation services. We offer meditation to calm your mind, body and energy. Join us for 3 months of activities you won't get anywhere else!</p>
+            <a style="text-decoration: none;" href="meditasi.html"><button class="info-btn">More Info...</button></a>
+          </div>
+        </div>
+
+        <div class="about-box container">
+          <div class="about-img">
+            <img class="about-vricap-img" src="img/zumba-plans.jpg" />
+          </div>
+          <div class="about-text">
+            <h2>Zumba</h2>
+            <h2 style="font-size: 2rem;"><em>(Recreational)</em></h2>
+            <p>We also offer Zumba activities. You don't like anything too relaxing? But you also don't like anything too intense? So, join our Zumba!</p>
+            <a style="text-decoration: none;" href="zumba.html"><button class="info-btn">More Info...</button></a>
+          </div>
+        </div>
+
+        <div class="about-box container">
+          <div class="about-img">
+            <img class="about-vricap-img" src="img/cardio-plans.jpg" />
+          </div>
+          <div class="about-text">
+            <h2>Cardio</h2>
+            <h2 style="font-size: 2rem;"><em>(Intensive)</em></h2>
+            <p>The most intensive activity we offer! Want to increase your cardiovascular endurance? Or even want to lose weight? This is the right choice. Based on observations we have made, participants lost an average of 10kg in our 3 month Cardio activities. WOW!</p>
+            <a style="text-decoration: none;" href="cardio.html"><button class="info-btn">More Info...</button></a>
+          </div>
+        </div>
+      </section>
+
+      <section id="hobby" class="hobby-section">
+        <div class="hobby-intro">
+          <h2>Plans Your Journey!</h2>
+          <p>Choose your journey!.</p>
+        </div>
+        <div class="hobby-box container">
+          <div class="hobby-card plans-1">
+            <img class="hobby-icon" src="/img/meditation-booking.png" alt="">
+            <h3>Meditation</h3>
+            <div class="info-list">
+            <ul>
+              <li>From January to April</li>
+              <li>Registration closes in February</li>
+              <li>Accommodation at your own expense</li>
+              <li>Can only be booked as long as the activity <strong><em>hasn't</em></strong> taken place!</li>
+            </ul>
+          </div>
+            <!-- <p>
+              Mulai dari Januari sampai April. Pendaftaran di tutup pada Februari. <br> <br>
+              (Penginapan di tanggung sendiri.) 
+              <br> <br> <br>
+              Hanya bisa di booking selama kegiatan <strong><em>belum</em></strong> di terlaksana!
+            </p> -->
+            <div class="price-book">
+              <p class="main-nav-link">$30,75</p>
+              <button class="book-btn">book now!</button>
+          </div>
+          </div>
+
+          <div class="hobby-card plans-2">
+            <img class="hobby-icon" src="/img/zumba-booking.png" alt="">
+            <h3>Zumba</h3>
+            <div class="info-list">
+            <ul>
+             	<li>From May to August</li>
+             	<li>Registration closes in June</li>
+           		<li>Accommodation at your own expense</li>
+             	<li>Can only be booked as long as the activity <strong><em>hasn't</em></strong> taken place!</li>
+            </ul>
+          </div>
+            <!-- <p>
+              Mulai dari Mei sampai Agustus. Pendaftaran di tutup pada Juni. <br> <br>
+              (Penginapan di tanggung sendiri.) 
+              <br> <br> <br>
+              Hanya bisa di booking selama kegiatan <strong><em>belum</em></strong> di terlaksana!
+            </p> -->
+            <div class="price-book">
+              <p class="main-nav-link">$43,06</p>
+              <button class="book-btn">book now!</button>
+          </div>
+          </div>
+
+          <div class="hobby-card plans-3">
+            <img class="hobby-icon" src="/img/cardio-booking.png" alt="">
+            <h3>Cardio</h3>
+            <div class="info-list">
+              <ul>
+					<li>From September to December</li>
+	                <li>Registration closes in October</li>
+	                <li>Accommodation at your own expense</li>
+	                <li>Can only be booked as long as the activity <strong><em>hasn't</em></strong> taken place!</li>
+              </ul>
+            </div>
+            <!-- <p>
+              Mulai dari September sampai Desember. Pendaftaran di tutup pada Oktober. <br> <br>
+              (Penginapan di tanggung sendiri.) 
+              <br> <br> <br>
+              Hanya bisa di booking selama kegiatan belum di terlaksana!
+            </p> -->
+            <div class="price-book">
+              <p class="main-nav-link">$30,75</p>
+              <button class="book-btn">book now!</button>
+            </div>
+          </div>
+      </section>
+
+      <section id="contact" class="contact-section">
+        <div class="contact-intro">
+          <h2>Keep in touch!</h2>
+        </div>
+        <div class="contact-box container">
+          <form class="contact-form">
+            <div>
+              <label for="Your-name">Your Name: </label>
+              <input id="Your-name" type="text" placeholder="Suharto" required />
+            </div>
+
+            <div>
+              <label for="Your-email">Your Email: </label>
+              <input
+                id="Your-email"
+                type="email"
+                placeholder="healtyu@gmail.com"
+                required
+              />
+            </div>
+
+            <div>
+              <textarea
+                id="message"
+                placeholder="Send message here!"
+                required
+              ></textarea>
+            </div>
+            <button class="contact-btn">send</button>
+          </form>
+
+          <div class="contact-info">
+            <ion-icon class="contact-icon" name="call"></ion-icon>
+            <div class="contact-info-text">
+              <h3>Phone</h3>
+              <p>+62 856 098 217 234</p>
+            </div>
+
+            <ion-icon class="contact-icon" name="navigate-circle"></ion-icon>
+            <div class="contact-info-text">
+              <h3>Address</h3>
+              <p>Sleman, Yogyakarta<br />Jawa Tengah, Indonesia</p>
+            </div>
+
+            <ion-icon class="contact-icon" name="mail"></ion-icon>
+            <div class="contact-info-text">
+              <h3>Email</h3>
+              <p>healtyu@gmail.com</p>
+            </div>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <footer class="footer-section">
+      <div class="footer-box container">
+        <div class="footer-social">
+          <a
+            href="#"
+            target="_blank"
+            class="footer-social-link"
+            ><ion-icon
+              class="footer-social-logo"
+              name="logo-facebook"
+            ></ion-icon
+          ></a>
+
+          <a
+            href="#"
+            target="_blank"
+            class="footer-social-link"
+            ><ion-icon
+              class="footer-social-logo"
+              name="logo-instagram"
+            ></ion-icon
+          ></a>
+
+          <a
+            href="#"
+            target="_blank"
+            class="footer-social-link"
+            ><ion-icon class="footer-social-logo" name="logo-twitter"></ion-icon
+          ></a>
+        </div>
+        <p>© 2024</p>
+      </div>
+    </footer>
+
+    <!-- Popup Overlay -->
+    <!-- <div class="popup-overlay" id="popupOverlay">
+      <div class="popup">
+        <span class="close-btn" id="closeBtn">&times;</span>
+        <h2>Payment Form</h2>
+        <form class="form-payment" action="">
+          <input type="text" id="name" placeholder="Nama Pemegang Kartu">
+          <input type="email" id="email" placeholder="Email" readonly>
+          <input type="text" id="cardNumber" placeholder="Credit/Debit Card Number">
+          <input type="text" id="price" placeholder="500rb" value="500rb" readonly>
+        </form>
+        <button class="pay-btn"">Pay</button>
+      <span><em>* Token / tiket akan dikirim ke email Anda</em></span>
+      </div>
+    </div> -->
+
+    <!-- <div class="payment-form-wrapper"> -->
+      <div class="payment-popup">
+          <button class="payment-close-btn">×</button>
+          <div class="payment-info-div">
+              <h2 style="font-weight: 500;">Payment Method</h2>
+                  <div class="payment-method">
+                      <div class="card-method">
+                          <input type="radio" id="card" name="method" value="card" checked/>
+                          <label for="card"><ion-icon name="card"></ion-icon>&nbsp; Credit or Debit Card</label>
+                      </div>
+  
+                      <div class="paypal-method">
+                          <input type="radio" id="paypal" name="method" value="paypal" disabled/>
+                          <label for="paypal"><i class="fa fa-paypal"></i>&nbsp;
+                              <span style="color: rgb(84, 17, 146);"><strong><em>Pay</em></strong></span><span style="color: rgb(115, 115, 190);"><strong><em>Pal</em></strong></span>
+                          </label>
+                      </div>
+              </div>
+          </div>
+  
+          <form class="payment-form">
+              <div>
+                  <input type="text" id="fname" name="fname"><br>
+                  <label for="fname">First name</label><br>
+              </div>
+  
+              <div>
+                  <input type="text" id="lname" name="lname"><br>
+                  <label for="lname">Last name</label><br>
+              </div>
+  
+              <div>
+                  <input type="text" id="cardnum" name="cardnum"><br>
+                  <label for="cardnum">Card Number</label><br>
+              </div>
+  
+              <div>
+                  <input type="text" id="seccode" name="seccode" placeholder="CVC"><br>
+                  <label for="seccode">Security Code</label><br>
+              </div>
+  
+              <div>
+                  <input type="date" id="expr" name="expr" placeholder="MM / YY"><br>
+                  <label for="expr">Card Expiration</label><br>
+              </div>
+  
+              <div>
+                  <input type="text" id="price" name="price" readonly><br>
+                  <label for="price">Price</label><br>
+              </div>
+  
+              <div>
+                  <input type="text" id="email" name="email" readonly><br>
+                  <label for="email">Email</label><br>
+              </div>
+  
+              <div>
+                  <input type="text" id="plans" name="plans" readonly><br>
+                  <label for="plans">Plans</label><br>
+              </div>
+          </form> 
+          <button class="form-pay">PAY</button>
+          <span style="font-size: 15px;"><em>* Token / tiket akan dikirim ke email Anda</em></span>
+      </div>
+  <!-- </div> -->
+
+    <div class="history-container">
+      <h1>History</h1>  
+        <button class="history-btn-close">Close</button>
+    </div>
+
+      <div class="history-btn-open">
+        <ion-icon class="history-icon" name="reload-circle-outline"></ion-icon>
+      </div>
+
+  	<!-- <button id="translateBtn"> -->
+   <!--  	<i class="bi bi-translate"></i> -->
+  	<!-- </button> -->
+
+    <script>
+      document.body.style.zoom = "0.9";
+     // Function to close the popup
+       document.querySelector('.payment-close-btn').onclick = function() {
+         document.querySelector('.payment-popup').style.display = 'none';
+       };
+    </script>
+    <script
+      type="module"
+      src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"
+    ></script>
+    <script
+      nomodule
+      src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"
+    ></script>
+
+<!--      <script> -->
+<!--     async function translateText(text) { -->
+<!--       const url = 'https://cors-anywhere.herokuapp.com/https://libretranslate.de/translate'; -->
+<!--  -->
+<!--       const response = await fetch(url, { -->
+<!--         method: 'POST', -->
+<!--         headers: { -->
+<!--           'Content-Type': 'application/json', -->
+<!--           'Accept': 'application/json' -->
+<!--         }, -->
+<!--         body: JSON.stringify({ -->
+<!--           q: text, -->
+<!--           source: 'id', -->
+<!--           target: 'en', -->
+<!--           format: 'text' -->
+<!--         }) -->
+<!--       }); -->
+<!--  -->
+<!--       const data = await response.json(); -->
+<!--       return data.translatedText; -->
+<!--     } -->
+<!--  -->
+<!--     async function translatePage() { -->
+<!--       const elementsToTranslate = document.querySelectorAll('li'); // Add more tags as needed -->
+<!--       for (let element of elementsToTranslate) { -->
+<!--         if (element.innerText.trim().length > 0) { -->
+<!--           const originalText = element.innerText; -->
+<!--           const translatedText = await translateText(originalText); -->
+<!--           element.innerText = translatedText; -->
+<!--         } -->
+<!--       } -->
+<!--     } -->
+<!--  -->
+<!--     document.getElementById('translateBtn').addEventListener('click', translatePage); -->
+  <!-- </script> -->
+  </body>
+</html>
